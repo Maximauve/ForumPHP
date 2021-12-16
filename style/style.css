@@ -1,0 +1,21 @@
+body {
+	background: rgb(55, 32, 82);
+	color: white;
+}
+
+.title {
+	position: relative;
+	display: inline-block;
+	position: center;
+	text-decoration: underline;
+	color: black;
+}
+.content {
+	margin-left: 1em;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	display: block;
+	font-size: smaller;
+	color: black;
+}
+
