@@ -26,7 +26,7 @@ $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $mail = $_POST['mail'];
-
+    
     $queryUser = "SELECT username, mail FROM user WHERE username = :username";
     $datas = [
         'username'=>$username,
@@ -39,9 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if (!empty($users)) {
         $errorMessage = "Cette adresse mail est déjà prise.";
     } else {
+        print_r($_FILES);
+        if (!isset($_FILES["picture"])) $picture = "./pictures/unknown.png";
+        else {
+            $target_dir = "./pictures";
+            $target_file = $target_dir . basename($_FILES["picture"]["name"]);
+            if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
+                echo "The file ". htmlspecialchars( basename( $_FILES["picture"]["name"])). " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
         $password = $_POST['password'];
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $picture = "https://imgur.com/a/iAJex60";
         $queryString  = "INSERT INTO user (username, password, mail, picture ) VALUES (:username, :password, :mail, :picture)";
         $datas = [
             'username'=>$username,
@@ -61,24 +71,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <body>
-    <form action="./register.php" method="post">
+    <form action="./register.php" method="post" enctype="multipart/form-data">
         <label for="username">
-            Nom d'utilisateur :
+            Nom d'utilisateur* :
             <input type="text" name="username" placeholder="Totodu56" required autofocus>
         </label>
         <br>
         <label for="mail">
-            Adresse mail :
+            Adresse mail* :
             <input type="text" name="mail" placeholder="toto@gmail.com" required>
         </label>
         <br>
+        <label for="picture">
+            Photo de profil :
+            <input type="file" name="picture">
+        </label>
+        <br>
         <label for="password">
-            Mot de passe :
+            Mot de passe* :
             <input id='password' type="password" name="password" placeholder="password" onkeyup='check()' required>
         </label>
         <br>
         <label for="password">
-            Confirmation de mot de passe :
+            Confirmation de mot de passe* :
             <input id='confirmpassword' type="password" name="password" placeholder="confirmpassword" onkeyup='check()' required>
         </label>
         <br>
