@@ -39,16 +39,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if (!empty($users)) {
         $errorMessage = "Cette adresse mail est déjà prise.";
     } else {
-        print_r($_FILES);
-        if (!isset($_FILES["picture"])) $picture = "./pictures/unknown.png";
+        if ($_FILES["picture"]["error"] !== 0) $picture = "./pictures/unknown.png";
         else {
-            $target_dir = "./pictures";
-            $target_file = $target_dir . basename($_FILES["picture"]["name"]);
-            if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
-                echo "The file ". htmlspecialchars( basename( $_FILES["picture"]["name"])). " has been uploaded.";
-            } else {
-                echo "Sorry, there was an error uploading your file.";
+            $file_name = $_FILES['picture']['name'];
+            $file_size = $_FILES['picture']['size'];
+            $file_tmp = $_FILES['picture']['tmp_name'];
+            $file_type = $_FILES['picture']['type'];
+            $extensions = array("jpeg","jpg","png","gif");
+            $file_ext = strtolower(end(explode('.',$file_name)));
+            if(!in_array($file_ext,$extensions) || $file_size > 4000000) {
+                $errorMessage = "Votre photo n'est pas conforme !";
+                return;
             }
+            $upload = move_uploaded_file($file_tmp,"./pictures/".$file_name);
+            if (!$upload) {
+                $errorMessage = "Erreur dans le téléchargement de votre photo";
+                return;
+            }
+            $picture = "./pictures/" . $file_name;
         }
         $password = $_POST['password'];
         $password = password_hash($password, PASSWORD_DEFAULT);
