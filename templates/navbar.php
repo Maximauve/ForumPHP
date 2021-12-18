@@ -20,6 +20,12 @@
 					</li>
 				<?php } ?>
 				<li class="nav-item">
+					<a class="nav-link" href="./profile.php">Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./new_post.php">Nouveau Post</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="./logout.php">Se déconnecter</a>
 				</li>
 			</ul>

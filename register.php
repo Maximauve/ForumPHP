@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $file_name = $_FILES['picture']['name'];
             $file_size = $_FILES['picture']['size'];
             $file_tmp = $_FILES['picture']['tmp_name'];
-            $file_type = $_FILES['picture']['type'];
             $extensions = array("jpeg","jpg","png","gif");
             $tmp = explode('.', $file_name);
             $file_ext = end($tmp);
