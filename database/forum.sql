@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 16 déc. 2021 à 22:04
+-- Généré le : sam. 18 déc. 2021 à 16:16
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
-  `content` text,
+  `content` text NOT NULL,
   `publicationDate` date NOT NULL,
   `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -67,17 +67,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `picture` text NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `mail`, `picture`, `admin`) VALUES
-(2, 'Mattox', '$2y$10$gnG8AmN7q8PHl2ckvR0JI.VpJcRl9bzEiO6DfpY9q7PkFMUaQMR8O', 'mattox@gmail.com', 'https://imgur.com/a/iAJex60', 1),
-(4, 'MattoxPicturee', '$2y$10$rD8HcMoUq.d9YRDP7ACW6.34VEi/rVHRP5zAYLS1R4qzG3cxZRUR6', 'picturee@gmail.com', 'pikachu.jpg', 0),
-(5, 'Mattox7', '$2y$10$JnhVEEcupHa/H1puJgyG1eMRSZ2DQavwxIuLmvBlyTvH8buamI1o2', 'picturee@gmail.com', './pictures/unknown.png', 0),
-(10, 't', '$2y$10$4.0unvo244XG1lC461bLb.Bc7AxZyzuDyt8QK4rA/NVNMt4jyki.S', 't', './pictures/pikachu.jpg', 0);
+(2, 'Mattox', '$2y$10$gnG8AmN7q8PHl2ckvR0JI.VpJcRl9bzEiO6DfpY9q7PkFMUaQMR8O', 'mattox@gmail.com', 'https://imgur.com/a/iAJex60', 1);
 
 --
 -- Contraintes pour les tables déchargées
