@@ -30,7 +30,7 @@ try {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="./index.php">Acceuil</a>
+          <a class="nav-link" aria-current="page" href="/">Acceuil</a>
         </li>
         <?php
         $username = $_SESSION["username"];
