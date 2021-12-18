@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query->execute($datas);
         $_SESSION['username'] = htmlspecialchars($_POST['username']);
         $_SESSION['connected'] = true;
-        header('Location: ./index.php');
+        header('Location: /');
         die();
     }
 }

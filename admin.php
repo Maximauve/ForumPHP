@@ -18,7 +18,7 @@ $query = $pdo->prepare($queryCheck);
 $query->execute($datas);
 $check = $query->fetch();
 if ($check[0] !== "1") {
-    header('Location: ./index.php');
+    header('Location: /');
 }
 
 ?>

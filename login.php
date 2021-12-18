@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $_SESSION['username'] = htmlspecialchars($_POST['username']);
             $_SESSION['connected'] = true;
-            header('Location: ./index.php');
+            header('Location: /');
             die();
         }
     }
