@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errorMessage = "Les champs sont incomplets";
     } else {
         $username = $_SESSION['username'];
-        $queryId = "SELECT id FROM user WHERE username = :username";
+        $queryId = "SELECT userId FROM user WHERE username = :username";
         $datas = [
             'username'=>$username
         ];
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'title'=>$title,
                 'content'=>$content,
                 'publicationDate'=>$publicationDate,
-                'id'=>$res["id"],
+                'id'=>$res["userId"],
                 'picture'=>$picture
             ];
             $query = $pdo->prepare($queryInsert);
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'title'=>$title,
                 'content'=>$content,
                 'publicationDate'=>$publicationDate,
-                'id'=>$res["id"]
+                'id'=>$res["userId"]
             ];
             $query = $pdo->prepare($queryInsert);
             $query->execute($datas);
