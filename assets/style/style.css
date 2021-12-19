@@ -1,21 +1,66 @@
-body {
-	background: rgb(55, 32, 82);
-	color: white;
+/**  ========== Navbar ==========  **/
+
+nav {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+nav .navbar {
+  justify-content: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+}
+nav .navbar-li {
+  margin-left: 2vw;
+  display: inline-flex;
+  list-style: none;
+  font-size: 18px;
+}
+nav .first {
+  margin-left: 0;
+  border-left: none;
+}
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+.nav-link:hover {
+  transform: scale(1.15);
 }
 
-.title {
-	position: relative;
-	display: inline-block;
-	position: center;
-	text-decoration: underline;
-	color: black;
+/** ========== Posts ==========  **/
+
+.posts {
+  display: inline-block;
+  justify-content: space-between;
 }
-.content {
-	margin-left: 1em;
-	margin-bottom: 1em;
-	margin-right: 1em;
-	display: block;
-	font-size: smaller;
-	color: black;
+.card-post {
+  display: inline-flex;
+  position: relative;
+  align-items: flex-start;
+  height: fit-content;
+  max-height: 20vw;
+  width: 40vw;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+.post-title {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+.post-content {
+  margin-left: 1vw;
+  display: block;
+  color: black;
+}
+.post-date {
+  font-size: smaller;
 }
 
+.Test {
+  text-align: center;
+  cursor: default;
+}
