@@ -20,21 +20,21 @@ require("./templates/head.php");
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mail = $_POST['mail'];
-    $queryUser = "SELECT mail, password FROM user WHERE mail = :mail";
+    $queryUser = "SELECT mail,username, password FROM user WHERE mail = :mail";
     $datas = [
         'mail'=>$mail,
     ];
     $query = $pdo->prepare($queryUser);
     $query->execute($datas);
-    $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
+    $users = $query->fetch(mode:PDO::FETCH_ASSOC);
     if (empty($users)) {
         $errorMessage = "Cet email n'existe pas";
     } else {
         $password = $_POST['password'];
-        if (!password_verify($password,$users[0]["password"])) {
+        if (!password_verify($password,$users["password"])) {
             $errorMessage = "Ce n'est pas le bon mot de passe !";
         } else {
-            $_SESSION['username'] = htmlspecialchars($_POST['username']);
+            $_SESSION['username'] = htmlspecialchars($users["username"]);
             $_SESSION['connected'] = true;
             header('Location: /');
             die();
@@ -52,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</div>
         <form method="post">
 						<div class="username">
-            	<label for="username">
+            	<label for="mail">
                 Email :<br/>
-                <input type="text" name="username" placeholder="example@example.com" required autofocus>
+                <input type="text" name="mail" placeholder="example@example.com" required autofocus>
             	</label>
 						</div>
 						<div class="password">

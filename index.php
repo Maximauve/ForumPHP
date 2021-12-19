@@ -23,14 +23,6 @@ $queryArticles = "SELECT * FROM article JOIN user ON user.userId = article.userI
 $query = $pdo->prepare($queryArticles);
 $query->execute();
 $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
-$queryUser = "SELECT admin FROM user WHERE username = :username";
-$datas = [
-	'username'=>$_SESSION['username']
-];
-$query = $pdo->prepare($queryUser);
-$query->execute($datas);
-$admin = $query->fetch(mode:PDO::FETCH_ASSOC);
-print_r($admin);
 ?>
 
 <?php foreach($articles as $post) {?>
@@ -49,7 +41,7 @@ print_r($admin);
   	  	</div>
   	  		<img class="post-img" src="<?=$post["picture"]?>">
   		<?php } ?>
-		  <?php if ($post["username"] === $_SESSION["username"] || $admin["admin"]) { ?>
+		  <?php if ($post["username"] === $_SESSION["username"]) { ?>
 		  <form method="POST" action="./delete.php">
 			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
 			  <button class="delete" type="submit">Delete</button>
