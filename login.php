@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="post">
 						<div class="username">
             	<label for="username">
-                Nom d'utilisateur :<br/>
+                Email :<br/>
                 <input type="text" name="username" placeholder="example@example.com" required autofocus>
             	</label>
 						</div>
