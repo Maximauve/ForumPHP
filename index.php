@@ -25,11 +25,10 @@ try {
 <?php require('./templates/navbar.php'); ?>
 <?php
 
-$queryArticles = "SELECT * FROM article JOIN user ON user.id = article.userId ORDER BY publicationDate DESC";
+$queryArticles = "SELECT * FROM article JOIN user ON user.userId = article.userId ORDER BY publicationDate DESC";
 $query = $pdo->prepare($queryArticles);
 $query->execute();
 $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
-
 ?>
 
 <?php foreach($articles as $post) {?>
@@ -48,6 +47,10 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
   	  	</div>
   	  		<img class="post-img" src="<?=$post["picture"]?>">
   		<?php } ?>
+		  <form method="POST" action="./delete.php">
+			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
+			  <button class="delete" type="submit">Delete</button>
+		  </form>
 		</div>
 	</div>
 <?php } ?>
