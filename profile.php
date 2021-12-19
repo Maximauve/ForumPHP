@@ -25,28 +25,21 @@ try {
 
 <?php require('./templates/navbar.php');
 
-$queryUser = "SELECT * FROM user WHERE username = :username";
+$queryUser = "SELECT * FROM article JOIN user ON user.userId = article.userId WHERE user.username = :username";
 $datas = [
     'username'=>$_SESSION['username']
 ];
 $query = $pdo->prepare($queryUser);
 $query->execute($datas);
-$resUser = $query->fetch(PDO::FETCH_ASSOC);
-$queryPosts = "SELECT * FROM article WHERE userId = :id";
-$datas = [
-    'id'=>$resUser['id']
-];
-$queryP = $pdo->prepare($queryPosts);
-$queryP->execute($datas);
-$resPosts = $queryP->fetchAll(PDO::FETCH_ASSOC);
+$resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h1> RECUPERATION DES INFORMATIONS </h1>
 
-<p> Username : <?= $resUser['username'] ?> </p>
-<p> Mail : <?= $resUser['mail'] ?> </p>
-<p> Photo de profil : <img src="<?=$resUser["picture"]?>"/> </p>
-<p> isAdmin : <?php if ($resUser['admin']) echo "Yes"; else echo "No" ?> </p>
+<p> Username : <?= $resPosts["0"]['username'] ?> </p>
+<p> Mail : <?= $resPosts["0"]['mail'] ?> </p>
+<p> Photo de profil : <img src="<?=$resPosts["0"]["picture"]?>"/> </p>
+<p> isAdmin : <?php if ($resPosts["0"]['admin']) echo "Yes"; else echo "No" ?> </p>
 
 <h1> RECUPERATIONS DES POSTS </h1>
 
