@@ -19,16 +19,16 @@ require("./templates/head.php");
 
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $queryUser = "SELECT username, password FROM user WHERE username = :username";
+    $mail = $_POST['mail'];
+    $queryUser = "SELECT mail, password FROM user WHERE mail = :mail";
     $datas = [
-        'username'=>$username,
+        'mail'=>$mail,
     ];
     $query = $pdo->prepare($queryUser);
     $query->execute($datas);
     $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
     if (empty($users)) {
-        $errorMessage = "Ce nom d'utilisateur n'existe pas";
+        $errorMessage = "Cet email n'existe pas";
     } else {
         $password = $_POST['password'];
         if (!password_verify($password,$users[0]["password"])) {
