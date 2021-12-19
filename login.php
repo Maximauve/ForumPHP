@@ -12,12 +12,12 @@ try {
 ?>
 
 <html lang="en">
-
+<head><title>Connexion - Yforum</title></head>
 
 <?php 
 require("./templates/head.php");
 ?>
-<head><title>Connexion - Yforum</title></head>
+
 
 
 <?php
@@ -55,13 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<p>Bienvenue ! Connectez-vous pour commencer.</p>
 			</div>
         <form method="post">
-						<div class="username">
-            	<label for="mail">
+						<div class="label">
+            	<label for="username">
                 Email :<br/>
                 <input type="text" name="mail" placeholder="example@example.com" required autofocus>
             	</label>
 						</div>
-						<div class="password">
+						<div class="label">
             	<label for="password">
                 Mot de passe :<br/>
                 <input type="password" name="password" placeholder="example" required>

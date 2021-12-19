@@ -96,6 +96,14 @@ button {
   border-radius: 10px;
 }
 
+.login-space .label:first-child {
+  margin-top: 0px;
+}
+
+.login-space .label {
+  margin-top: 15px;
+}
+
 .login-space label {
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-weight: 600;
@@ -118,18 +126,15 @@ button {
 }
 
 .login-space ::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #627597;
   opacity: 1; /* Firefox */
 }
 
 .login-space :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
   color: #627597;
 }
 
 .login-space ::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: #627597;
 }
 

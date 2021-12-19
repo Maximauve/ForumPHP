@@ -24,11 +24,10 @@ if ($check[0] !== "1") {
 ?>
 
 <html lang="en">
+<head><title>Administration - Yforum</title></head>
 <?php 
 require("./templates/head.php");
 ?>
-<head><title>Administration - Yforum</title></head>
-
 
 
 <body>

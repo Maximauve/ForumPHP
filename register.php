@@ -13,11 +13,11 @@ try {
 ?>
 
 <html lang="en">
+<head><title>Créer un compte - Yforum</title></head>
 
 <?php 
 require("./templates/head.php");
 ?>
-<head><title>Créer un compte - Yforum</title></head>
 
 <?php
 $errorMessage = "";
@@ -88,32 +88,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<p>Bienvenue ! Créez un compte pour commencer.</p>
 			</div>
     <form action="./register.php" method="post" enctype="multipart/form-data">
+			<div class="label">
         <label for="username">
             Nom d'utilisateur* :<br/>
             <input type="text" name="username" placeholder="Totodu56" required autofocus>
         </label>
-        <br>
+			</div> 
+			<div class="label">
         <label for="mail">
             Adresse mail* :<br/>
             <input type="text" name="mail" placeholder="toto@gmail.com" required>
         </label>
-        <br>
+			</div>
+			<div class="label">
         <label for="picture">
             Photo de profil :<br/>
             <input type="file" name="picture">
         </label>
-        <br>
+			</div>
+			<div class="label">
         <label for="password">
             Mot de passe* :<br/>
             <input id='password' type="text" name="password" placeholder="password" onkeyup='check()' required>
         </label>
-        <br>
+			</div>
+			<div class="label">
         <label for="password">
             Confirmation de mot de passe* :<br/>
             <input id='confirmpassword' type="text" name="confirmpassword" placeholder="confirm password" onkeyup='check()' required>
         </label>
-        <br>
-        <button type="submit" name="login" id="confirmbtn">Connexion</button>
+			</div>
+        <button type="submit" name="login" id="confirmbtn">Créer un compte</button>
         <br>
 
         <p id="message"></p>
