@@ -41,7 +41,7 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
   	  	</div>
   	  		<img class="post-img" src="<?=$post["picture"]?>">
   		<?php } ?>
-		  <?php if ($post["username"] === $_SESSION["username"]) { ?>
+		  <?php if ($post["mail"] === $_SESSION["mail"]) { ?>
 		  <form method="POST" action="./delete.php">
 			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
 			  <button class="delete" type="submit">Delete</button>
