@@ -10,6 +10,7 @@ body {
   padding: 0px;
   background-color: #040d21;
   background-image: "./assets/images/hero-glow.svg";
+  overflow: hidden;
 }
 
 h1,
@@ -18,8 +19,7 @@ h3,
 h4,
 h5,
 h6,
-p,
-label {
+p {
   font-family: "Raleway", sans-serif;
   color: #fefeff;
 }
@@ -36,6 +36,10 @@ label {
   border-style: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 /** Page de connexion **/
 
 .login-title {
@@ -46,18 +50,121 @@ label {
   font-size: 90px;
 }
 
-.login-subtitle {
-  text-align: center;
-  margin-top: 0px;
-  font-size: 30px;
+.login-space .text {
+  /*This part is important for centering*/
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.login-space .text p {
+  width: 42ch;
+  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-weight: 600;
+  font-size: 18px;
+  color: #627597;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 
 .login-space {
   display: block;
   align-self: center;
   width: 606px;
-	background-color:#0c162d;
-	border-color: ;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: #0c162d;
+  border: 1px solid #0c162d;
+  border-radius: 10px;
+}
+
+.login-space label {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-weight: 600;
+  font-size: 18px;
+  color: #00cfc8;
+  margin-top: 15px;
+}
+
+.login-space input {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 18px;
+  color: #627597;
+  background-color: transparent;
+  border: 0px solid transparent;
+  margin-left: 15px;
+}
+
+.login-space input:focus {
+  outline: none;
+}
+
+.login-space ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #627597;
+  opacity: 1; /* Firefox */
+}
+
+.login-space :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #627597;
+}
+
+.login-space ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #627597;
+}
+
+.login-space .password {
+  margin-top: 15px;
+}
+
+.login-space button {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  margin-top: 30px;
+  color: #0c162d;
+  font-weight: bold;
+  font-size: 18px;
+  display: inline;
+  background-color: #627597;
+  border: 3px solid #627597;
+  border-radius: 10px;
+}
+
+.login-space button:hover {
+  color: #627597;
+  background-color: #0c162d;
+  border: 3px solid #627597;
+  border-radius: 10px;
+}
+
+.login-other {
+  text-align: center;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.login-other a {
+  color: #00cfc8;
+  text-decoration: none;
+}
+
+.login-other a:hover {
+  font-weight: bold;
 }
 
 /**  ========== NAV ==========  **/

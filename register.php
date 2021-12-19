@@ -13,15 +13,10 @@ try {
 ?>
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="./assets/style/style.css">
-</head>
 
 <?php 
+require("./templates/head.php");
+
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -84,29 +79,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <body>
+	<h1 class="login-title">Yforum</h1>
+	<div class="login-space">
+			<div class="text">
+				<p>Bienvenue ! Connectez-vous pour commencer.</p>
+			</div>
     <form action="./register.php" method="post" enctype="multipart/form-data">
         <label for="username">
-            Nom d'utilisateur* :
+            Nom d'utilisateur* :<br/>
             <input type="text" name="username" placeholder="Totodu56" required autofocus>
         </label>
         <br>
         <label for="mail">
-            Adresse mail* :
+            Adresse mail* :<br/>
             <input type="text" name="mail" placeholder="toto@gmail.com" required>
         </label>
         <br>
         <label for="picture">
-            Photo de profil :
+            Photo de profil :<br/>
             <input type="file" name="picture">
         </label>
         <br>
         <label for="password">
-            Mot de passe* :
+            Mot de passe* :<br/>
             <input id='password' type="text" name="password" placeholder="password" onkeyup='check()' required>
         </label>
         <br>
         <label for="password">
-            Confirmation de mot de passe* :
+            Confirmation de mot de passe* :<br/>
             <input id='confirmpassword' type="text" name="confirmpassword" placeholder="confirm password" onkeyup='check()' required>
         </label>
         <br>
@@ -116,7 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p id="message"></p>
         <p> <?= $errorMessage ?> </p>
     </form>
-    <a href="./login.php"><button name="login">   Tu as deja un compte ? connecte toi  </button></a>
+	</div>
+	<p class="login-other">Vous avez déjà un compte ? <a href="./login.php">Se connecter</a>
+	<img src="./assets/images/hero-glow.svg" alt="Glowing lights" class="hero-glow"/>
     <!-- <script type="text/javascript" src="./assets/js/script.js"></script> -->
 </body>
 </html>

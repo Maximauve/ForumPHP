@@ -12,19 +12,11 @@ try {
 ?>
 
 <html lang="en">
-<head>
-	<link rel="stylesheet" type="text/css" href="./assets/style/style.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-</head>
 
 <?php 
+require("./templates/head.php");
+
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -55,23 +47,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 	<h1 class="login-title">Yforum</h1>
     <div class="login-space">
-			<h2 class="login-subtitle">Connectez vous !</h2>
+			<div class="text">
+				<p>Bienvenue ! Connectez-vous pour commencer.</p>
+			</div>
         <form method="post">
-            <label for="username">
-                Nom d'utilisateur :
-                <input type="text" name="username" placeholder="toto@gmail.com" required autofocus>
-            </label>
-            <br>
-            <label for="password">
-                Mot de passe :
-                <input type="password" name="password" placeholder="password" required>
-            </label>
-            <br>
-            <button type="submit" name="login">Connexion</button>
+						<div class="username">
+            	<label for="username">
+                Nom d'utilisateur :<br/>
+                <input type="text" name="username" placeholder="example@example.com" required autofocus>
+            	</label>
+						</div>
+						<div class="password">
+            	<label for="password">
+                Mot de passe :<br/>
+                <input type="password" name="password" placeholder="example" required>
+            	</label>
+						</div>
+           <button type="submit" name="login">Connexion</button>
         </form>
-       <a href="./register.php"><button name="register">   Créer un compte  </button></a>
         <p> <?= $errorMessage ?> </p>
     </div>
+		<p class="login-other">Vous n'avez pas de compte ? <a href="./register.php">Créer un compte</a>
 	<img src="./assets/images/hero-glow.svg" alt="Glowing lights" class="hero-glow"/>
 </body>
 </html>
