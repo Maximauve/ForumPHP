@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<body>
+<body class="login-page">
 	<h1 class="login-title">Yforum</h1>
     <div class="login-space">
 			<div class="text">
