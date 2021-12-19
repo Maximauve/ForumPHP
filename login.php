@@ -18,6 +18,10 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 
 <?php 
@@ -49,8 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <body>
-    <h2>Connectez vous !</h2>
-    <div>
+	<h1 class="login-title">Yforum</h1>
+    <div class="login-space">
+			<h2 class="login-subtitle">Connectez vous !</h2>
         <form method="post">
             <label for="username">
                 Nom d'utilisateur :
@@ -67,5 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        <a href="./register.php"><button name="register">   Créer un compte  </button></a>
         <p> <?= $errorMessage ?> </p>
     </div>
+	<img src="./assets/images/hero-glow.svg" alt="Glowing lights" class="hero-glow"/>
 </body>
 </html>

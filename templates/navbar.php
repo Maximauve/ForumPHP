@@ -1,7 +1,7 @@
 <nav>
 	<ul class="navbar">
 		<li class="first navbar-li">
-			<a class="nav-link" href="./profile.php">Profile</a>
+			<a class="nav-link" href="./profile.php">Profil</a>
 		</li>
 		<li class="navbar-li">
 			<a class="nav-link" href="/">Acceuil</a>

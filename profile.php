@@ -52,7 +52,7 @@ $resPosts = $queryP->fetchAll(PDO::FETCH_ASSOC);
 
 <?php foreach($resPosts as $post) {?>
 	<div class="posts">
-  	<div class="card-post">
+  	<div class="post-card">
   	  <?php if ($post["picture"]) {?>
   	    <div>
   	  <?php } ?>
@@ -63,9 +63,7 @@ $resPosts = $queryP->fetchAll(PDO::FETCH_ASSOC);
   	  </div>
   	  <?php if ($post["picture"]) {?>
   	  	</div>
-  	  	<div>
-  	  		<img src="<?=$post["picture"]?>">
-  	  	</div>
+  	  		<img class="post-img" src="<?=$post["picture"]?>">
   		<?php } ?>
 		</div>
 	</div>

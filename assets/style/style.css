@@ -1,10 +1,73 @@
-/**  ========== Navbar ==========  **/
+/**  ========== INIT ==========  **/
+
+html {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #040d21;
+  background-image: "./assets/images/hero-glow.svg";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label {
+  font-family: "Raleway", sans-serif;
+  color: #fefeff;
+}
+
+.hero-glow {
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: hidden !important;
+  position: absolute !important;
+  border-style: none;
+}
+
+/** Page de connexion **/
+
+.login-title {
+  font-family: "VT323", monospace;
+  text-align: center;
+  margin-top: 50px;
+  font-weight: normal;
+  font-size: 90px;
+}
+
+.login-subtitle {
+  text-align: center;
+  margin-top: 0px;
+  font-size: 30px;
+}
+
+.login-space {
+  display: block;
+  align-self: center;
+  width: 606px;
+	background-color:#0c162d;
+	border-color: ;
+}
+
+/**  ========== NAV ==========  **/
 
 nav {
-  font-family: "Raleway", sans-serif;
+  padding-top: 10px 10px 10px 0px;
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 15px;
+  background-color: #202225;
 }
 nav .navbar {
   justify-content: flex-start;
@@ -24,19 +87,21 @@ nav .first {
 }
 .nav-link {
   text-decoration: none;
-  color: black;
+  color: #fefeff;
+  transition: scale 1s;
 }
 .nav-link:hover {
   transform: scale(1.15);
+  color: #57f287;
 }
 
-/** ========== Posts ==========  **/
+/** ========== POSTS ==========  **/
 
 .posts {
   display: inline-block;
   justify-content: space-between;
 }
-.card-post {
+.post-card {
   display: inline-flex;
   position: relative;
   align-items: flex-start;
@@ -58,6 +123,9 @@ nav .first {
 }
 .post-date {
   font-size: smaller;
+}
+.post-img {
+  width: 40%;
 }
 
 .Test {
