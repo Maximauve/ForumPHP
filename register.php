@@ -16,7 +16,10 @@ try {
 
 <?php 
 require("./templates/head.php");
+?>
+<head><title>Créer un compte - Yforum</title></head>
 
+<?php
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -82,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<h1 class="login-title">Yforum</h1>
 	<div class="login-space">
 			<div class="text">
-				<p>Bienvenue ! Connectez-vous pour commencer.</p>
+				<p>Bienvenue ! Créez un compte pour commencer.</p>
 			</div>
     <form action="./register.php" method="post" enctype="multipart/form-data">
         <label for="username">
