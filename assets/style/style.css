@@ -10,7 +10,6 @@ body {
   padding: 0px;
   background-color: #040d21;
   background-image: "./assets/images/hero-glow.svg";
-  overflow: hidden;
 }
 
 h1,
@@ -41,6 +40,10 @@ button {
 }
 
 /** Page de connexion **/
+
+.login-page {
+  overflow: hidden;
+}
 
 .login-title {
   font-family: "VT323", monospace;
