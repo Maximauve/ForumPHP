@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errorMessage = "Les mots de passe ne correspondent pas.";
         } else {
             $password = password_hash($password, PASSWORD_DEFAULT);
-            $queryString  = "INSERT INTO user (username, password, mail, picture ) VALUES (:username, :password, :mail, :picture)";
+            $queryString  = "INSERT INTO user (username, password, mail, profilePicture ) VALUES (:username, :password, :mail, :picture)";
             $datas = [
                 'username'=>$username,
                 'password'=>$password,
