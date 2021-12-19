@@ -16,7 +16,11 @@ try {
 
 <?php 
 require("./templates/head.php");
+?>
+<head><title>Connexion - Yforum</title></head>
 
+
+<?php
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
