@@ -41,10 +41,14 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
   	  	</div>
   	  		<img class="post-img" src="<?=$post["picture"]?>">
   		<?php } ?>
-		  <?php if ($post["mail"] === $_SESSION["mail"]) { ?>
+		  <?php if ($post["username"] === $_SESSION["username"]) { ?>
 		  <form method="POST" action="./delete.php">
 			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
-			  <button class="delete" type="submit">Delete</button>
+			  <button type="submit">Delete</button>
+		  </form>
+		  <form method="POST" action="./edit.php">
+			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
+			  <button type="submit">Edit</button>
 		  </form>
 		  <?php } ?>
 		</div>
@@ -52,5 +56,6 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 <?php } ?>
 
 <script type="text/javascript" src="./assets/js/script.js"></script>
+
 </body>
 </html>

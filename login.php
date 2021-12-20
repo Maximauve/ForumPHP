@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!password_verify($password,$users["password"])) {
             $errorMessage = "Ce n'est pas le bon mot de passe !";
         } else {
-            $_SESSION['mail'] = htmlspecialchars($users["mail"]);
+            $_SESSION['username'] = htmlspecialchars($users["username"]);
             $_SESSION['connected'] = true;
             header('Location: /');
             die();

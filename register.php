@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ];
             $query = $pdo->prepare($queryString);
             $query->execute($datas);
-            $_SESSION['mail'] = htmlspecialchars($_POST['mail']);
+            $_SESSION['username'] = htmlspecialchars($_POST['username']);
             $_SESSION['connected'] = true;
             header('Location: /');
             die();

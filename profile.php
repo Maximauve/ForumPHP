@@ -38,7 +38,7 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <p> Username : <?= $resPosts["0"]['username'] ?> </p>
 <p> Mail : <?= $resPosts["0"]['mail'] ?> </p>
-<p> Photo de profil : <img src="<?=$resPosts["0"]["picture"]?>"/> </p>
+<p> Photo de profil : <img src="<?=$resPosts["0"]["profilePicture"]?>"/> </p>
 <p> isAdmin : <?php if ($resPosts["0"]['admin']) echo "Yes"; else echo "No" ?> </p>
 
 <h1> RECUPERATIONS DES POSTS </h1>
