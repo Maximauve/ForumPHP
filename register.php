@@ -91,13 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="label">
         <label for="username">
             Nom d'utilisateur* :<br/>
-            <input type="text" name="username" placeholder="Totodu56" required autofocus>
+            <input type="text" name="username" placeholder="Example" required autofocus>
         </label>
 			</div> 
 			<div class="label">
         <label for="mail">
             Adresse mail* :<br/>
-            <input type="text" name="mail" placeholder="toto@gmail.com" required>
+            <input type="text" name="mail" placeholder="example@example.com" required>
         </label>
 			</div>
 			<div class="label">
@@ -109,13 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="label">
         <label for="password">
             Mot de passe* :<br/>
-            <input id='password' type="text" name="password" placeholder="password" onkeyup='check()' required>
+            <input id='password' type="password" name="password" placeholder="example" onkeyup='check()' required>
         </label>
 			</div>
 			<div class="label">
         <label for="password">
             Confirmation de mot de passe* :<br/>
-            <input id='confirmpassword' type="text" name="confirmpassword" placeholder="confirm password" onkeyup='check()' required>
+            <input id='confirmpassword' type="password" name="confirmpassword" placeholder="example" onkeyup='check()' required>
         </label>
 			</div>
         <button type="submit" name="login" id="confirmbtn">Créer un compte</button>
