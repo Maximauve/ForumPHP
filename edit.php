@@ -22,10 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $title = $_POST['title'];
         $content = $_POST['content'];
         $articleId = $_POST['articleId'];
-        $queryUpdate = "UPDATE article SET title = :title, content = :content WHERE id = :articleId";
+        $queryUpdate = "UPDATE article SET title = :title, content = :content,modified = :modified WHERE id = :articleId";
         $datas = [
             'title'=>$title,
             'content'=>$content,
+            'modified'=>true,
             'articleId'=>$articleId
         ];
         $query = $pdo->prepare($queryUpdate);

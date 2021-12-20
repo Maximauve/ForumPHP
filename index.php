@@ -32,10 +32,14 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
   	    <div>
   	  <?php } ?>
   	  <div>
+			
 		<p> <?= $post["username"] ?> </p>
   	  	<p class="post-title"><?=$post["title"]?></p>
   	  	<p class="post-content"><?=$post["content"]?></p>
   	  	<p class="post-date"><?=$post["publicationDate"]?></p>
+			<?php if ($post["modified"]) { ?>
+		<p> (modifié) </p>
+			<?php } ?>
   	  </div>
   	  <?php if ($post["picture"]) {?>
   	  	</div>
