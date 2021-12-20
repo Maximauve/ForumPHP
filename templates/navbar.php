@@ -7,10 +7,10 @@
 			<a class="nav-link" href="/">Acceuil</a>
 		</li>
 		<?php
-		$username = $_SESSION["username"];
-		$queryCheck = "SELECT admin FROM user WHERE username = :username";
+		$mail = $_SESSION["mail"];
+		$queryCheck = "SELECT admin FROM user WHERE mail = :mail";
 		$datas = [
-			'username'=>$username,
+			'mail'=>$mail,
 		];
 		$query = $pdo->prepare($queryCheck);
 		$query->execute($datas);
