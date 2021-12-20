@@ -24,10 +24,10 @@
 				<a href="/">Acceuil</a>
 			</li>
 			<?php
-			$mail = $_SESSION["mail"];
-			$queryCheck = "SELECT admin FROM user WHERE mail = :mail";
+			$username = $_SESSION["username"];
+			$queryCheck = "SELECT admin FROM user WHERE username = :username";
 			$datas = [
-				'mail'=>$mail,
+				'username'=>$username,
 			];
 			$query = $pdo->prepare($queryCheck);
 			$query->execute($datas);
