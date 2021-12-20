@@ -47,12 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $file_ext = end($tmp);
             if(!in_array($file_ext,$extensions) || $file_size > 4000000) {
                 $errorMessage = "Votre photo n'est pas conforme !";
-                return;
+                header('Location: /register.php');
+                die();
             }
             $upload = move_uploaded_file($file_tmp,"./assets/profile_pictures/".$username . "." . $file_ext);
             if (!$upload) {
                 $errorMessage = "Erreur dans le téléchargement de votre photo";
-                return;
+                header('Location: /register.php');
+                die();
             }
             $picture = "./assets/profile_pictures/" . $username. "." . $file_ext;
         }
