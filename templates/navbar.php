@@ -17,7 +17,7 @@
 		$check = $query->fetch();
 		if ($check[0]) { ?>
 			<li>
-				<a href="./admin.php">Admin</a>
+				<a href="./admin_post.php">Admin</a>
 			</li>
 		<?php } ?>
 		<li>

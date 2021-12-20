@@ -42,7 +42,7 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 ?>
 
 <h1> Gestions des posts </h1>
-
+<button><a href="./admin_user.php" > Gestions des users </a></button>
 <?php foreach($articles as $post) {?>
 	<div class="space sp-large">
   	<div class="post">
