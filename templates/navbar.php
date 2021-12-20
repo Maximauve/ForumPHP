@@ -16,32 +16,15 @@
 		$query->execute($datas);
 		$check = $query->fetch();
 		if ($check[0]) { ?>
-			<li class="navbar-li">
-				<a class="nav-link" href="./admin.php">Admin</a>
+			<li>
+				<a href="./admin.php">Admin</a>
 			</li>
 		<?php } ?>
-			<li>
-				<a href="/">Acceuil</a>
-			</li>
-			<?php
-			$username = $_SESSION["username"];
-			$queryCheck = "SELECT admin FROM user WHERE username = :username";
-			$datas = [
-				'username'=>$username,
-			];
-			$query = $pdo->prepare($queryCheck);
-			$query->execute($datas);
-			$check = $query->fetch();
-			if ($check[0]) { ?>
-				<li>
-					<a href="./admin.php">Admin</a>
-				</li>
-			<?php } ?>
-			<li>
-				<a href="./new_post.php">Nouveau Post</a>
-			</li>
-			<li>
-				<a href="./logout.php">Se déconnecter</a>
-			</li>
-		</ul>
-	</nav>
+		<li>
+			<a href="./new_post.php">Nouveau Post</a>
+		</li>
+		<li>
+			<a href="./logout.php">Se déconnecter</a>
+		</li>
+	</ul>
+</nav>
