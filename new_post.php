@@ -12,12 +12,9 @@ try {
 ?>
 
 <html lang="fr">
-<head>
-	<link rel="stylesheet" type="text/css" href="./assets/style/style.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
+<head><title>Nouveau post - Yforum</title></head>
+
+<?php require("./templates/head.php"); ?>
 
 <?php
 // SELECT * FROM `article` ORDER BY id DESC LIMIT 1
@@ -89,31 +86,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 
-<body>
+<body class="newpost-page">
 
 <?php require('./templates/navbar.php'); ?>
-
-<form action="./new_post.php" method="post" enctype="multipart/form-data">
-    <label for="title">
-        Titre :
+<h1>Yforum : Nouveau post</h1>
+<div class="space sp-small">
+	<div class="text">
+		<p>De quoi voulez-vous parler ?</p>
+	</div>
+	<form action="./new_post.php" method="post" enctype="multipart/form-data">
+		<div class="label">
+    	<label for="title">
+        Titre :<br />
         <input type="text" name="title" placeholder="Your title" required autofocus>
-    </label>
-    <br>
-    <label for="content">
-        Description :
+    	</label>
+		</div>
+    <div class="label">
+    	<label for="content">
+        Description :<br />
         <input type="text" name="content" placeholder="your description" required>
-    </label>
-    <br>
-    <label for="picture">
-        Photo (non obligatoire) :
+    	</label>
+		</div>	
+    <div class="label">
+    	<label for="picture">
+        Photo (facultatif) :<br />
         <input type="file" name="picture">
-    </label>
-    <br>
+    	</label>
+		</div>
     <button type="submit" name="login" id="confirmbtn">Post</button>
     <br>
     <p id="message"></p>
     <p> <?= $errorMessage ?> </p>
 </form>
+</div>
 
 <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>

@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!password_verify($password,$users["password"])) {
             $errorMessage = "Ce n'est pas le bon mot de passe !";
         } else {
-            $_SESSION['mail'] = htmlspecialchars($users["mail"]);
+            $_SESSION['username'] = htmlspecialchars($users["username"]);
             $_SESSION['connected'] = true;
             header('Location: /');
             die();
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <body class="login-page">
-	<h1 class="login-title">Yforum</h1>
-    <div class="login-space">
+	<h1>Yforum : Connexion</h1>
+    <div class="space  sp-small">
 			<div class="text">
 				<p>Bienvenue ! Connectez-vous pour commencer.</p>
 			</div>

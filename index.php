@@ -13,10 +13,12 @@ try {
 <html lang="fr">
 <?php require("./templates/head.php"); ?>
 
-<body>
+<body class="index-page">
 
 
 <?php require('./templates/navbar.php'); ?>
+<h1>Yforum</h1>
+
 <?php
 
 $queryArticles = "SELECT * FROM article JOIN user ON user.userId = article.userId ORDER BY publicationDate DESC";
@@ -26,20 +28,20 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 ?>
 
 <?php foreach($articles as $post) {?>
-	<div class="posts">
-  	<div class="post-card">
+	<div class="space sp-large">
+  	<div class="post">
   	  <?php if ($post["picture"]) {?>
   	    <div>
   	  <?php } ?>
   	  <div>
-		<p> <?= $post["username"] ?> </p>
-  	  	<p class="post-title"><?=$post["title"]?></p>
-  	  	<p class="post-content"><?=$post["content"]?></p>
-  	  	<p class="post-date"><?=$post["publicationDate"]?></p>
+				<p class="author">Auteur : <?= $post["username"] ?> </p>
+  	  	<p class="title"><?=$post["title"]?></p>
+  	  	<p class="content"><?=$post["content"]?></p>
+  	  	<p class="date">Date : <?=$post["publicationDate"]?></p>
   	  </div>
   	  <?php if ($post["picture"]) {?>
   	  	</div>
-  	  		<img class="post-img" src="<?=$post["picture"]?>">
+  	  		<img class="img" src="<?=$post["picture"]?>">
   		<?php } ?>
 		  <?php if ($post["mail"] === $_SESSION["mail"]) { ?>
 		  <form method="POST" action="./delete.php">
@@ -50,7 +52,6 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 		</div>
 	</div>
 <?php } ?>
-
 <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>

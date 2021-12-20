@@ -12,14 +12,23 @@ body {
   background-image: "./assets/images/hero-glow.svg";
 }
 
-h1,
+h1 {
+  font-family: "VT323", monospace;
+  text-align: center;
+  margin-top: 50px;
+  font-weight: normal;
+  font-size: 90px;
+  color: #fefeff;
+}
+
 h2,
 h3,
 h4,
 h5,
 h6,
-p {
-  font-family: "Raleway", sans-serif;
+p,
+a {
+  font-family: "Segoe UI", sans-serif;
   color: #fefeff;
 }
 
@@ -39,29 +48,77 @@ button {
   cursor: pointer;
 }
 
-/** Page de connexion **/
+/**  ========== SPACE ==========  **/
 
-.login-page {
+/** Newpost only **/
+
+.newpost-page .space .text p {
+  width: 28ch;
+}
+
+/** Login & Register only **/
+
+.login-page,
+.register-page {
   overflow: hidden;
 }
 
-.login-title {
-  font-family: "VT323", monospace;
-  text-align: center;
-  margin-top: 50px;
-  font-weight: normal;
-  font-size: 90px;
+.login-page .space .text p {
+  width: 42ch;
 }
 
-.login-space .text {
+.register-page .space .text p {
+  width: 43ch;
+}
+
+.login-other {
+  text-align: center;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.login-other a {
+  color: #00cfc8;
+  text-decoration: none;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.login-other a:hover {
+  font-weight: bold;
+}
+
+/** Posts Only **/
+
+.space .post .title {
+  font-size: 30px;
+}
+
+.space .post .content {
+  font-size: 18px;
+}
+
+.space .post .author {
+  color: #627597;
+  font-weight: 600;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.space .post .date {
+  color: #627597;
+  text-align: right;
+  font-weight: 600;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+/** All spaces **/
+
+.space .text {
   /*This part is important for centering*/
   display: flex;
   align-items: center;
   justify-content: left;
 }
 
-.login-space .text p {
-  width: 42ch;
+.space .text p {
   animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
@@ -84,27 +141,33 @@ button {
   }
 }
 
-.login-space {
+.space {
   display: block;
   align-self: center;
-  width: 606px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0px auto 25px auto;
   padding: 20px;
   background-color: #0c162d;
   border: 1px solid #0c162d;
   border-radius: 10px;
 }
 
-.login-space .label:first-child {
+.sp-small {
+  width: 606px;
+}
+
+.sp-large {
+  width: 1000px;
+}
+
+.space .label:first-child {
   margin-top: 0px;
 }
 
-.login-space .label {
+.space .label {
   margin-top: 15px;
 }
 
-.login-space label {
+.space label {
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-weight: 600;
   font-size: 18px;
@@ -112,7 +175,7 @@ button {
   margin-top: 15px;
 }
 
-.login-space input {
+.space input {
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-size: 18px;
   color: #627597;
@@ -121,28 +184,28 @@ button {
   margin-left: 15px;
 }
 
-.login-space input:focus {
+.space input:focus {
   outline: none;
 }
 
-.login-space ::placeholder {
+.space ::placeholder {
   color: #627597;
   opacity: 1; /* Firefox */
 }
 
-.login-space :-ms-input-placeholder {
+.space :-ms-input-placeholder {
   color: #627597;
 }
 
-.login-space ::-ms-input-placeholder {
+.space ::-ms-input-placeholder {
   color: #627597;
 }
 
-.login-space .password {
+.space .password {
   margin-top: 15px;
 }
 
-.login-space button {
+.space button {
   font-family: Consolas, Monaco, "Courier New", monospace;
   margin-top: 30px;
   color: #0c162d;
@@ -154,63 +217,47 @@ button {
   border-radius: 10px;
 }
 
-.login-space button:hover {
+.space button:hover {
   color: #627597;
   background-color: #0c162d;
   border: 3px solid #627597;
   border-radius: 10px;
 }
 
-.login-other {
-  text-align: center;
-  font-family: Consolas, Monaco, "Courier New", monospace;
-}
-
-.login-other a {
-  color: #00cfc8;
-  text-decoration: none;
-}
-
-.login-other a:hover {
-  font-weight: bold;
-}
-
 /**  ========== NAV ==========  **/
 
 nav {
   padding-top: 10px 10px 10px 0px;
-  text-transform: uppercase;
   font-weight: 500;
-  margin-bottom: 15px;
-  background-color: #202225;
+  background-color: #0c162d;
+  padding: 15px 0px 15px 0px;
 }
-nav .navbar {
+nav ul {
   justify-content: flex-start;
-  margin-left: auto;
-  margin-right: auto;
   list-style: none;
+  margin: 0px auto 0px auto;
 }
-nav .navbar-li {
+nav li {
   margin-left: 2vw;
   display: inline-flex;
   list-style: none;
   font-size: 18px;
 }
-nav .first {
+nav li:first-child {
   margin-left: 0;
   border-left: none;
 }
-.nav-link {
+nav li a {
   text-decoration: none;
   color: #fefeff;
-  transition: scale 1s;
+  transition: all 0.2s ease-in-out;
 }
-.nav-link:hover {
-  transform: scale(1.15);
+nav li a:hover {
+  transform: scale(1.1);
   color: #57f287;
 }
 
-/** ========== POSTS ==========  **/
+/** ========== POSTS ========== 
 
 .posts {
   display: inline-block;
@@ -247,3 +294,4 @@ nav .first {
   text-align: center;
   cursor: default;
 }
+**/

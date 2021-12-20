@@ -1,30 +1,38 @@
-<nav>
-	<ul class="navbar">
-		<li class="first navbar-li">
-			<a class="nav-link" href="./profile.php">Profil</a>
-		</li>
-		<li class="navbar-li">
-			<a class="nav-link" href="/">Acceuil</a>
-		</li>
-		<?php
-		$mail = $_SESSION["mail"];
-		$queryCheck = "SELECT admin FROM user WHERE mail = :mail";
-		$datas = [
-			'mail'=>$mail,
-		];
-		$query = $pdo->prepare($queryCheck);
-		$query->execute($datas);
-		$check = $query->fetch();
-		if ($check[0]) { ?>
-			<li class="navbar-li">
-				<a class="nav-link" href="./admin.php">Admin</a>
+<header>
+<!-- NAV BAR -->
+	<nav>
+		<ul>
+			<li>
+				<a href="./profile.php">Profil</a>
 			</li>
-		<?php } ?>
-		<li class="navbar-li">
-			<a class="nav-link" href="./new_post.php">Nouveau Post</a>
-		</li>
-		<li class="navbar-li">
-			<a class="nav-link" href="./logout.php">Se déconnecter</a>
-		</li>
-	</ul>
-</nav>
+			<li>
+				<a href="/">Acceuil</a>
+			</li>
+			<?php
+			$mail = $_SESSION["mail"];
+			$queryCheck = "SELECT admin FROM user WHERE mail = :mail";
+			$datas = [
+				'mail'=>$mail,
+			];
+			$query = $pdo->prepare($queryCheck);
+			$query->execute($datas);
+			$check = $query->fetch();
+			if ($check[0]) { ?>
+				<li>
+					<a href="./admin.php">Admin</a>
+				</li>
+			<?php } ?>
+			<li>
+				<a href="./new_post.php">Nouveau Post</a>
+			</li>
+			<li>
+				<a href="./logout.php">Se déconnecter</a>
+			</li>
+		</ul>
+	</nav>
+
+<!-- PROFILE ZONE -->
+	<div>
+		<img class="user-icon" src="" />
+	</div>
+</header>

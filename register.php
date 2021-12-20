@@ -81,12 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<body class="login-page">
-	<h1 class="login-title">Yforum</h1>
-	<div class="login-space">
-			<div class="text">
-				<p>Bienvenue ! Créez un compte pour commencer.</p>
-			</div>
+<body class="register-page">
+	<h1>Yforum : Créer un compte</h1>
+	<div class="space  sp-small">
+		<div class="text">
+			<p>Bienvenue ! Créez un compte pour commencer.</p>
+		</div>
     <form action="./register.php" method="post" enctype="multipart/form-data">
 			<div class="label">
         <label for="username">
