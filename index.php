@@ -38,20 +38,28 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
   	  	<p class="title"><?=$post["title"]?></p>
   	  	<p class="content"><?=$post["content"]?></p>
   	  	<p class="date">Date : <?=$post["publicationDate"]?></p>
+				<?php if ($post["modified"]) { ?>
+					<p> (modifié) </p>
+				<?php } ?>
   	  </div>
   	  <?php if ($post["picture"]) {?>
   	  	</div>
   	  		<img class="img" src="<?=$post["picture"]?>">
   		<?php } ?>
-		  <?php if ($post["mail"] === $_SESSION["mail"]) { ?>
+		  <?php if ($post["username"] === $_SESSION["username"]) { ?>
 		  <form method="POST" action="./delete.php">
 			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
-			  <button class="delete" type="submit">Delete</button>
+			  <button type="submit">Delete</button>
+		  </form>
+		  <form method="POST" action="./edit.php">
+			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
+			  <button type="submit">Edit</button>
 		  </form>
 		  <?php } ?>
 		</div>
 	</div>
 <?php } ?>
 <script type="text/javascript" src="./assets/js/script.js"></script>
+
 </body>
 </html>

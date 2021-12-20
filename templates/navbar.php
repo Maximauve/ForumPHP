@@ -1,10 +1,25 @@
-<header>
-<!-- NAV BAR -->
-	<nav>
-		<ul>
-			<li>
-				<a href="./profile.php">Profil</a>
+<nav>
+	<ul class="navbar">
+		<li class="first navbar-li">
+			<a class="nav-link" href="./profile.php">Profil</a>
+		</li>
+		<li class="navbar-li">
+			<a class="nav-link" href="/">Acceuil</a>
+		</li>
+		<?php
+		$username = $_SESSION["username"];
+		$queryCheck = "SELECT admin FROM user WHERE username = :username";
+		$datas = [
+			'username'=>$username,
+		];
+		$query = $pdo->prepare($queryCheck);
+		$query->execute($datas);
+		$check = $query->fetch();
+		if ($check[0]) { ?>
+			<li class="navbar-li">
+				<a class="nav-link" href="./admin.php">Admin</a>
 			</li>
+		<?php } ?>
 			<li>
 				<a href="/">Acceuil</a>
 			</li>
@@ -30,9 +45,3 @@
 			</li>
 		</ul>
 	</nav>
-
-<!-- PROFILE ZONE -->
-	<div>
-		<img class="user-icon" src="" />
-	</div>
-</header>

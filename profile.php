@@ -36,10 +36,10 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
 
-<p> Username : <?= $resPosts['username'] ?> </p>
-<p> Mail : <?= $resPosts['mail'] ?> </p>
-<p> Photo de profil : <img src="<?=$resPosts["picture"]?>"/> </p>
-<p> isAdmin : <?php if ($resPosts['admin']) echo "Yes"; else echo "No" ?> </p>
+<p> Username : <?= $resPosts["0"]['username'] ?> </p>
+<p> Mail : <?= $resPosts["0"]['mail'] ?> </p>
+<p> Photo de profil : <img src="<?=$resPosts["0"]["profilePicture"]?>"/> </p>
+<p> isAdmin : <?php if ($resPosts["0"]['admin']) echo "Yes"; else echo "No" ?> </p>
 
 <h2> RECUPERATIONS DES POSTS </h2>
 
