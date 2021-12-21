@@ -35,7 +35,10 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
-
+<form method="POST" action="./edit_user.php">
+	<input type="text" name="id" value="<?=$resPosts[0]["userId"]?>" style="display: none;"/>
+	<button type="submit">Edit Profile</button>
+</form>
 <p> Username : <?= $resPosts["0"]['username'] ?> </p>
 <p> Mail : <?= $resPosts["0"]['mail'] ?> </p>
 <p> Photo de profil : <img src="<?=$resPosts["0"]["profilePicture"]?>"/> </p>
