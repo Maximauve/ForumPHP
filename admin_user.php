@@ -47,10 +47,19 @@ $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 	<div class="space sp-large">
   	    <div class="post">
             <p> Username  <?= $user["username"] ?></p>
-            <p> Mail <?= $user["mail"] ?></p>
+            <p> Adresse mail <?= $user["mail"] ?></p>
             Photo de profil <img src="<?= $user["profilePicture"] ?>"/>
-            <p> Admin : <?php if ($user["admin"]) { ?> Oui <?php } else { ?> Non <?php } ?> </p>
+            <p> Admin : <?php if ($user["admin"]) { ?> Oui <?php } else { ?> Non
+                <form method="POST" action="./get_admin.php">
+                    <input type="text" name="id" value="<?=$user["userId"]?>" style="display: none;"/>
+                    <button type="submit">Promouvoir</button>
+                </form>
+                <?php } ?> </p>
 	    </div>
+        <form method="POST" action="./delete_user.php">
+            <input type="text" name="id" value="<?=$user["userId"]?>" style="display: none;"/>
+			<button type="submit">Delete</button>
+		</form>
 	</div>
 <?php } ?>
 

@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if (!empty($users)) {
         $errorMessage = "Cette adresse mail est déjà prise.";
     } else {
-        if ($_FILES["picture"]["error"] !== 0) $picture = "./pictures/unknown.png";
+        if ($_FILES["picture"]["error"] !== 0) $picture = "./assets/profile_pictures/unknown.png";
         else {
             $file_name = $_FILES['picture']['name'];
             $file_size = $_FILES['picture']['size'];
