@@ -120,6 +120,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </form>
 </div>
 
-<script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>

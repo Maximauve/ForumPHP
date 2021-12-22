@@ -24,7 +24,14 @@
 			<a href="/post/new_post.php">Nouveau Post</a>
 		</li>
 		<li>
-			<a href="./logout.php">Se déconnecter</a>
+			<a href="/logout.php">Se déconnecter</a>
 		</li>
+		<form action="/search/index.php" method="post" enctype="multipart/form-data">
+			<input type="text" name="search" placeholder="Search" required>
+			<label>Post :<input type="radio" name="choice" value="post" checked></input></label>
+			<label>User :<input type="radio" name="choice" value="user"></input></label>
+			<button type="submit" name="btnsearch" id="confirmbtn">Search</button>
+
+		</form>
 	</ul>
 </nav>

@@ -129,6 +129,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</div>
 	<p class="login-other">Vous avez déjà un compte ? <a href="./login.php">Se connecter</a>
 	<img src="./assets/images/hero-glow.svg" alt="Glowing lights" class="hero-glow"/>
-    <!-- <script type="text/javascript" src="./assets/js/script.js"></script> -->
 </body>
 </html>

@@ -61,6 +61,5 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 	</div>
 <?php } ?>
 
-<script type="text/javascript" src="../assets/js/script.js"></script>
 </body>
 </html>
