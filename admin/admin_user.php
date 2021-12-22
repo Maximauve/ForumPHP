@@ -1,5 +1,5 @@
 <?php 
-require './checkConnection.php';
+require('../checkConnection.php');
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
@@ -26,14 +26,12 @@ if ($check[0] !== "1") {
 <html lang="fr">
 <head><title>Administration - Yforum</title></head>
 <?php 
-require("./templates/head.php");
+require("../templates/head.php");
 ?>
 
 <body>
 
-<?php require('./templates/navbar.php'); ?>
-
-<?php
+<?php require('../templates/navbar.php'); 
 
 $queryUsers = "SELECT * FROM user";
 $query = $pdo->prepare($queryUsers);
@@ -42,7 +40,7 @@ $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 ?>
 
 <h1> Gestions des users </h1>
-<button><a href="./admin_post.php" > Gestions des posts </a></button>
+<button><a href="/admin/admin_post.php" > Gestions des posts </a></button>
 <?php foreach($users as $user) {?>
 	<div class="space sp-large">
   	    <div class="post">
@@ -50,20 +48,18 @@ $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
             <p> Adresse mail <?= $user["mail"] ?></p>
             Photo de profil <img src="<?= $user["profilePicture"] ?>"/>
             <p> Admin : <?php if ($user["admin"]) { ?> Oui <?php } else { ?> Non
-                <form method="POST" action="./get_admin.php">
+                <form method="POST" action="/admin/get_admin.php">
                     <input type="text" name="id" value="<?=$user["userId"]?>" style="display: none;"/>
                     <button type="submit">Promouvoir</button>
                 </form>
                 <?php } ?> </p>
 	    </div>
-        <form method="POST" action="./delete_user.php">
+        <form method="POST" action="/admin/delete_user.php">
             <input type="text" name="id" value="<?=$user["userId"]?>" style="display: none;"/>
 			<button type="submit">Delete</button>
 		</form>
 	</div>
 <?php } ?>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>

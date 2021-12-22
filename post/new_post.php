@@ -1,5 +1,5 @@
 <?php 
-require './checkConnection.php';
+require('../checkConnection.php');
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
@@ -14,7 +14,7 @@ try {
 <html lang="fr">
 <head><title>Nouveau post - Yforum</title></head>
 
-<?php require("./templates/head.php"); ?>
+<?php require("../templates/head.php"); ?>
 
 <?php
 // SELECT * FROM `article` ORDER BY id DESC LIMIT 1
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body class="newpost-page">
 
-<?php require('./templates/navbar.php'); ?>
+<?php require('../templates/navbar.php'); ?>
 <h1>Yforum : Nouveau post</h1>
 <div class="space sp-small">
 	<div class="text">

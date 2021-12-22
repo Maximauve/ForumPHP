@@ -1,7 +1,7 @@
 <nav>
 	<ul class="navbar">
 		<li class="first navbar-li">
-			<a class="nav-link" href="./profile.php">Profil</a>
+			<a class="nav-link" href="/profile">Profil</a>
 		</li>
 		<li class="navbar-li">
 			<a class="nav-link" href="/">Acceuil</a>
@@ -17,11 +17,11 @@
 		$check = $query->fetch();
 		if ($check[0]) { ?>
 			<li>
-				<a href="./admin_post.php">Admin</a>
+				<a href="/admin/admin_post.php">Admin</a>
 			</li>
 		<?php } ?>
 		<li>
-			<a href="./new_post.php">Nouveau Post</a>
+			<a href="/post/new_post.php">Nouveau Post</a>
 		</li>
 		<li>
 			<a href="./logout.php">Se déconnecter</a>

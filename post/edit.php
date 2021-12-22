@@ -1,5 +1,5 @@
 <?php
-require './checkConnection.php';
+require('../checkConnection.php');
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
@@ -11,6 +11,7 @@ try {
 $errorMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST["id"]) {
+				$id = $_POST["id"];
         $queryDelete = "SELECT * FROM article WHERE id = :id";
         $datas = [
             'id'=>$_POST["id"],
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
         $query = $pdo->prepare($queryUpdate);
         $query->execute($datas);
-        header('Location: /');
+        header("Location: /post?id=$id");
         die();
     }
 } else {
@@ -40,12 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 <html lang="fr">
-<?php require("./templates/head.php"); ?>
+<?php require("../templates/head.php"); ?>
 
 <body>
 
 
-<?php require('./templates/navbar.php'); ?>
+<?php require('../templates/navbar.php'); ?>
 
 <h1> INFORMATIONS <h2>
 

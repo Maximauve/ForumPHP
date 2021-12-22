@@ -10,13 +10,14 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$queryDelete = "DELETE FROM article WHERE id = :id";
+	$queryAdmin = "UPDATE user SET admin = :admin WHERE userId = :id";
     $datas = [
-        'id'=>$_POST["id"],
+        'admin'=>true,
+        'id'=>$_POST["id"]
     ];
-    $query = $pdo->prepare($queryDelete);
+    $query = $pdo->prepare($queryAdmin);
     $query->execute($datas);
-	header('Location: /');
+	header('Location: /admin/admin_user.php');
 } else {
 	header('Location: /');
 }

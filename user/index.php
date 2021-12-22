@@ -1,13 +1,12 @@
-
 <?php 
 session_start();
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
 try {
-    $pdo = new PDO($dsn, $username, $password);
+	$pdo = new PDO($dsn, $username, $password);
 } catch (PDOException $exception) {
-    die();
+	die();
 }
 
 ?>
@@ -23,11 +22,12 @@ try {
 
 <body>
 
-<?php require('./templates/navbar.php');
+<?php require('../templates/navbar.php');
 
-$queryUser = "SELECT * FROM article JOIN user ON user.userId = article.userId WHERE user.username = :username";
+$userId = $_GET['id'];
+$queryUser = "SELECT * FROM article JOIN user ON user.userId = article.userId WHERE user.userId = :userId";
 $datas = [
-    'username'=>$_SESSION['username']
+		'userId'=>$userId
 ];
 $query = $pdo->prepare($queryUser);
 $query->execute($datas);
@@ -35,10 +35,6 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
-<form method="POST" action="./edit_user.php">
-	<input type="text" name="id" value="<?=$resPosts[0]["userId"]?>" style="display: none;"/>
-	<button type="submit">Edit Profile</button>
-</form>
 <p> Username : <?= $resPosts["0"]['username'] ?> </p>
 <p> Mail : <?= $resPosts["0"]['mail'] ?> </p>
 <p> Photo de profil : <img src="<?=$resPosts["0"]["profilePicture"]?>"/> </p>
@@ -48,23 +44,23 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <?php foreach($resPosts as $post) {?>
 	<div class="posts">
-  	<div class="post-card">
-  	  <?php if ($post["picture"]) {?>
-  	    <div>
-  	  <?php } ?>
-  	  <div>
-  	  	<p class="post-title"><?=$post["title"]?></p>
-  	  	<p class="post-content"><?=$post["content"]?></p>
-  	  	<p class="post-date"><?=$post["publicationDate"]?></p>
-  	  </div>
-  	  <?php if ($post["picture"]) {?>
-  	  	</div>
-  	  		<img class="post-img" src="<?=$post["picture"]?>">
-  		<?php } ?>
+		<div class="post-card">
+			<?php if ($post["picture"]) {?>
+				<div>
+			<?php } ?>
+			<div>
+				<p class="post-title"><?=$post["title"]?></p>
+				<p class="post-content"><?=$post["content"]?></p>
+				<p class="post-date"><?=$post["publicationDate"]?></p>
+			</div>
+			<?php if ($post["picture"]) {?>
+				</div>
+					<img class="post-img" src="<?=$post["picture"]?>">
+			<?php } ?>
 		</div>
 	</div>
 <?php } ?>
 
-<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="../assets/js/script.js"></script>
 </body>
 </html>

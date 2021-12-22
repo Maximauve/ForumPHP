@@ -1,5 +1,5 @@
 <?php 
-require './checkConnection.php';
+require('../checkConnection.php');
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
@@ -8,16 +8,14 @@ try {
 } catch (PDOException $exception) {
 	die();
 }
-
 ?>
 <html lang="fr">
-<?php require("./templates/head.php"); ?>
+<?php require("../templates/head.php"); ?>
 
 <body class="index-page">
 
-<?php require('./templates/navbar.php'); ?>
+<?php require('../templates/navbar.php'); 
 
-<?php 
 
 $id = $_GET["id"];
 $queryShow = "SELECT * FROM article INNER JOIN user ON user.userId = article.userId WHERE id = :id";
@@ -49,14 +47,14 @@ $post = $query->fetch(mode:PDO::FETCH_ASSOC);
   	  	</div>
   	  		<img class="img" src="<?=$post["picture"]?>">
   		<?php } ?>
-		  <?php if ($post["username"] === $_SESSION["username"] || $user["admin"]) { ?>
+		  <?php if ($post["username"] === $_SESSION["username"]) { ?>
             <form method="POST" action="./delete.php">
                 <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
                 <button type="submit">Delete</button>
             </form>
             <?php } ?>
             <?php if ($post["username"] === $_SESSION["username"]) { ?>
-		  <form method="POST" action="./edit.php">
+		  <form method="POST" action="/post/edit.php">
 			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
 			  <button type="submit">Edit</button>
 		  </form>

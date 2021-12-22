@@ -1,5 +1,5 @@
 <?php
-require './checkConnection.php';
+require('../checkConnection.php');
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
@@ -10,13 +10,13 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$queryDelete = "DELETE FROM user WHERE userId = :id";
+	$queryDelete = "DELETE FROM article WHERE id = :id";
     $datas = [
         'id'=>$_POST["id"],
     ];
     $query = $pdo->prepare($queryDelete);
     $query->execute($datas);
-	header('Location: /admin_user.php');
+	header('Location: /');
 } else {
 	header('Location: /');
 }
