@@ -20,7 +20,6 @@ try {
 <h1>Yforum</h1>
 
 <?php
-phpinfo();
 
 $queryArticles = "SELECT * FROM article JOIN user ON user.userId = article.userId ORDER BY publicationDate DESC";
 $query = $pdo->prepare($queryArticles);
