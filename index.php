@@ -57,10 +57,7 @@ $articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 			  <button type="submit">Edit</button>
 		  </form>
 		  <?php } ?>
-		  <form method="POST" action="./show.php">
-			  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
-			  <button type="submit">Show</button>
-		  </form>
+			<button><a href="./post.php?id=<?=$post["id"]?>">Show</a></button>
 		</div>
 	</div>
 <?php } ?>
