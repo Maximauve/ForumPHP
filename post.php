@@ -15,31 +15,22 @@ try {
 
 <body class="index-page">
 
-
 <?php require('./templates/navbar.php'); ?>
 
 <?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $queryShow = "SELECT * FROM article JOIN user ON user.userId = article.userId WHERE article.id = :id";
-    $datas = [
-        'id'=>$_POST["id"],
-    ];
-    $query = $pdo->prepare($queryShow);
-    $query->execute($datas);
-    $post = $query->fetch(mode:PDO::FETCH_ASSOC);
-    $queryUser = "SELECT admin FROM user WHERE username = :username";
-    $datas = [
-        'username'=>$_SESSION["username"]
-    ];
-    $query2 = $pdo->prepare($queryUser);
-    $query2->execute($datas);
-    $user = $query2->fetch(mode:PDO::FETCH_ASSOC);
-} else {
-	header('Location: /');
-}
+
+$id = $_GET["id"];
+$queryShow = "SELECT * FROM article INNER JOIN user ON user.userId = article.userId WHERE id = :id";
+$datas = [
+	'id'=>$id
+];
+$query = $pdo->prepare($queryShow);
+$query->execute($datas);
+$post = $query->fetch(mode:PDO::FETCH_ASSOC);
 
 ?>
 <h1> Show </h1>
+
 <div class="space sp-large">
   	<div class="post">
   	  <?php if ($post["picture"]) {?>
@@ -72,3 +63,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  <?php } ?>
 		</div>
 	</div>
+
