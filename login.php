@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</div>
         <form method="post">
 						<div class="label">
-            	<label for="username">
+            	<label for="mail">
                 Email :<br/>
                 <input type="text" name="mail" placeholder="example@example.com" required autofocus>
             	</label>
@@ -71,7 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
         <p> <?= $errorMessage ?> </p>
     </div>
-		<p class="login-other">Vous n'avez pas de compte ? <a href="./register.php">Créer un compte</a>
+		<p class="login-other">Vous n'avez pas de compte ? <a href="./register.php">Créer un compte</a></p>
+		<p class="login-other">Mot de pase oublié? <a href="./password.php">Réinitialiser le mot de passe</a></p>
 	<img src="./assets/images/hero-glow.svg" alt="Glowing lights" class="hero-glow"/>
 </body>
 </html>
