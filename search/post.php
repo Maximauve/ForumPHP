@@ -22,7 +22,7 @@ $posts = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 <?php require('../templates/navbar.php'); ?>
 <?php
 if (count($posts) == 0) { ?>
-	<h1> "Aucun résultat n'a été trouvé." </h1>
+	<h1> Aucun résultat n'a été trouvé. </h1>
 <?php } else { ?> 
 	<h1> <?= count($posts) ?> résultats </h1> 
 	<?php foreach ($posts as $post) { ?>

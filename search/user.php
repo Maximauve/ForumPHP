@@ -19,8 +19,11 @@ $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 
 <?php require("../templates/head.php"); ?>
 <body>
-<?php require('../templates/navbar.php'); ?>
-
+<?php require('../templates/navbar.php'); 
+if (count($users) == 0) { ?>
+	<h1> Aucun résultat n'a été trouvé. </h1>
+<?php } else { ?> 
+	<h1> <?= count($users) ?> résultats </h1> 
 <?php foreach($users as $user) {?>
 	<div class="space sp-large">
   	    <div class="post">
@@ -29,4 +32,5 @@ $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
             <p> Admin : <?php if ($user["admin"]) { ?> Oui <?php } else { ?> Non </p> <?php } ?>
 	    </div>
 	</div>
-<?php } ?>
+<?php } 
+} ?>
