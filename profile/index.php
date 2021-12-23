@@ -47,7 +47,7 @@ $favorites = array_map(function ($favorite) {
 ?>
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
-<form method="POST" action="../user/edit.php">
+<form method="POST" action="/profile/edit.php">
 	<input type="text" name="id" value="<?=$resPosts[0]["userId"]?>" style="display: none;"/>
 	<button type="submit">Edit Profile</button>
 </form>
