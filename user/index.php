@@ -25,11 +25,19 @@ try {
 <?php require('../templates/navbar.php');
 
 $userId = $_GET['id'];
-$queryUser = "SELECT * FROM article JOIN user ON user.userId = article.userId WHERE user.userId = :userId";
+$queryUser = "SELECT * FROM user WHERE userId = :id";
 $datas = [
-		'userId'=>$userId
+	'id'=>$userId
 ];
 $query = $pdo->prepare($queryUser);
+$query->execute($datas);
+$user = $query->fetch(PDO::FETCH_ASSOC);
+
+$queryPosts = "SELECT * FROM article WHERE userId = :id";
+$datas = [
+	'id'=>$userId
+];
+$query = $pdo->prepare($queryPosts);
 $query->execute($datas);
 $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -47,9 +55,9 @@ $favorites = array_map(function ($favorite) {
 ?>
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
-<p> Username : <?= $resPosts["0"]['username'] ?> </p>
-<p> Photo de profil : <img src="<?=$resPosts["0"]["profilePicture"]?>"/> </p>
-<p> isAdmin : <?php if ($resPosts["0"]['admin']) echo "Yes"; else echo "No" ?> </p>
+<p> Username : <?= $user['username'] ?> </p>
+<p> Photo de profil : <img src="<?=$user["profilePicture"]?>"/> </p>
+<p> isAdmin : <?php if ($user['admin']) echo "Yes"; else echo "No" ?> </p>
 
 <h2> RECUPERATIONS DES POSTS </h2>
 

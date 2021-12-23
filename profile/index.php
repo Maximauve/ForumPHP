@@ -24,14 +24,21 @@ try {
 
 <?php require('../templates/navbar.php');
 
-$queryUser = "SELECT * FROM article JOIN user ON user.userId = article.userId WHERE user.username = :username";
+$queryUser = "SELECT * FROM user WHERE username = :username";
 $datas = [
 		'username'=>$_SESSION['username']
 ];
 $query = $pdo->prepare($queryUser);
 $query->execute($datas);
-$resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
+$user = $query->fetch(PDO::FETCH_ASSOC);
 
+$queryPosts = "SELECT * FROM article WHERE userId = :id";
+$datas = [
+	'id'=>$user["userId"]
+];
+$query = $pdo->prepare($queryPosts);
+$query->execute($datas);
+$resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $queryFavorite = "SELECT articleId FROM favorite INNER JOIN user ON user.userId = favorite.userId WHERE username = :username";
 $datas = [
@@ -48,13 +55,13 @@ $favorites = array_map(function ($favorite) {
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
 <form method="POST" action="/profile/edit.php">
-	<input type="text" name="id" value="<?=$resPosts[0]["userId"]?>" style="display: none;"/>
+	<input type="text" name="id" value="<?=$user["userId"]?>" style="display: none;"/>
 	<button type="submit">Edit Profile</button>
 </form>
-<p> Username : <?= $resPosts["0"]['username'] ?> </p>
-<p> Mail : <?= $resPosts["0"]['mail'] ?> </p>
-<p> Photo de profil : <img src="<?=$resPosts["0"]["profilePicture"]?>"/> </p>
-<p> isAdmin : <?php if ($resPosts["0"]['admin']) echo "Yes"; else echo "No" ?> </p>
+<p> Username : <?= $user['username'] ?> </p>
+<p> Mail : <?= $user['mail'] ?> </p>
+<p> Photo de profil : <img src="<?=$user["profilePicture"]?>"/> </p>
+<p> isAdmin : <?php if ($user['admin']) echo "Yes"; else echo "No" ?> </p>
 
 <h2> RECUPERATIONS DES POSTS </h2>
 
@@ -75,8 +82,8 @@ $favorites = array_map(function ($favorite) {
 				<p class="post-date"><?=$post["publicationDate"]?></p>
 			</div>
 			<?php if ($post["picture"]) {?>
-				</div>
-					<img class="post-img" src="<?=$post["picture"]?>">
+				<img class="post-img" src="<?=$post["picture"]?>">
+			</div>
 			<?php } ?>
 		</div>
 	</div>
