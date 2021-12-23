@@ -1,5 +1,5 @@
 <?php 
-require './checkConnection.php';
+session_start();
 $dsn="mysql:host=localhost:3306;dbname=forum";
 $username='root';
 $password='';
@@ -8,45 +8,40 @@ try {
 } catch (PDOException $exception) {
 	die();
 }
-
 ?>
 <html lang="fr">
-<?php require("./templates/head.php"); ?>
+<?php require("../templates/head.php"); ?>
 
 <body class="index-page">
 
+<?php require('../templates/navbar.php'); 
 
-<?php require('./templates/navbar.php'); ?>
-<h1>Yforum</h1>
-
-<?php
-
-$queryArticles = "SELECT * FROM article JOIN user ON user.userId = article.userId ORDER BY publicationDate DESC";
-$query = $pdo->prepare($queryArticles);
-$query->execute();
-$articles = $query->fetchAll(mode:PDO::FETCH_ASSOC);
-
-$queryFavorite = "SELECT articleId FROM favorite INNER JOIN user ON user.userId = favorite.userId WHERE username = :username";
+$queryUser = "SELECT userId FROM user WHERE username = :username";
 $datas = [
-	'username'=>$_SESSION['username']
+    'username'=>$_SESSION["username"]
 ];
-$query = $pdo->prepare($queryFavorite);
+$query = $pdo->prepare($queryUser);
+$query->execute($datas);
+$user = $query->fetch(mode:PDO::FETCH_ASSOC);
+
+$queryFavorites = "SELECT * FROM article JOIN user ON article.userId = user.userId JOIN favorite ON favorite.articleId = article.id WHERE favorite.userId = :id";
+$datas = [
+    'id'=>$user["userId"]
+];
+$query = $pdo->prepare($queryFavorites);
 $query->execute($datas);
 $favorites = $query->fetchAll(mode:PDO::FETCH_ASSOC);
-$favorites = array_map(function ($favorite) {
-    $favorite = $favorite["articleId"];
-	return $favorite;
-}, $favorites);
 
-foreach($articles as $post) {?>
+if (count($favorites) == 0) { ?>
+	<h1> Aucun résultat n'a été trouvé. </h1>
+<?php } else { ?> 
+	<h1> <?= count($favorites) ?> résultats </h1> 
+
+<?php foreach($favorites as $post) {?>
 	<!-- <a href="./post?id=<?=$post["id"]?>"> -->
 		<div class="space sp-large" id="<?=$post["id"]?>">
   		<div class="post">
-		  <?php if (in_array($post["id"], $favorites)) { ?>
 			<a href="/favorite/unfavorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-2.png" alt="Heart"/></a>
-		<?php } else { ?>
-			<a href="/favorite/favorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-1.png" alt="Heart"/></a>
-		<?php } ?>
   		  <?php if ($post["picture"]) {?>
   		    <div>
   		  <?php } ?>
@@ -76,7 +71,5 @@ foreach($articles as $post) {?>
 			</div>
 		</div>
 	<!-- </a> -->
-<?php } ?>
-
-</body>
-</html>
+<?php } 
+} ?>

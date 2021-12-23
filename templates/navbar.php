@@ -24,6 +24,9 @@
 			<a href="/post/new_post.php">Nouveau Post</a>
 		</li>
 		<li>
+			<a href="/favorite/favorite_post.php">Favoris</a>
+		</li>
+		<li>
 			<a href="/logout.php">Se déconnecter</a>
 		</li>
 		<form action="/search/index.php" method="post" enctype="multipart/form-data">

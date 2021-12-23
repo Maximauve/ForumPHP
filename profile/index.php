@@ -31,6 +31,19 @@ $datas = [
 $query = $pdo->prepare($queryUser);
 $query->execute($datas);
 $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+$queryFavorite = "SELECT articleId FROM favorite INNER JOIN user ON user.userId = favorite.userId WHERE username = :username";
+$datas = [
+	'username'=>$_SESSION['username']
+];
+$query = $pdo->prepare($queryFavorite);
+$query->execute($datas);
+$favorites = $query->fetchAll(mode:PDO::FETCH_ASSOC);
+$favorites = array_map(function ($favorite) {
+    $favorite = $favorite["articleId"];
+	return $favorite;
+}, $favorites);
 ?>
 
 <h2> RECUPERATION DES INFORMATIONS </h2>
@@ -46,8 +59,13 @@ $resPosts = $query->fetchAll(PDO::FETCH_ASSOC);
 <h2> RECUPERATIONS DES POSTS </h2>
 
 <?php foreach($resPosts as $post) {?>
-	<div class="posts">
-		<div class="post-card">
+	<div class="space sp-large" id="<?=$post["id"]?>">
+  		<div class="post">
+		  <?php if (in_array($post["id"], $favorites)) { ?>
+			<a href="/favorite/unfavorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-2.png" alt="Heart"/></a>
+		<?php } else { ?>
+			<a href="/favorite/favorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-1.png" alt="Heart"/></a>
+		<?php } ?>
 			<?php if ($post["picture"]) {?>
 				<div>
 			<?php } ?>
