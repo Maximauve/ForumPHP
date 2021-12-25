@@ -1,10 +1,10 @@
 # final-tp-PHP
 
-## By Mattéo FERREIRA et Maxime MOURGUES
+## By Mattéo FERREIRA & Maxime MOURGUES
 
 Tableof content:
 - [final-tp-PHP](#final-tp-php)
-	- [By Mattéo FERREIRA et Maxime MOURGUES](#by-mattéo-ferreira-et-maxime-mourgues)
+	- [By Mattéo FERREIRA & Maxime MOURGUES](#by-mattéo-ferreira--maxime-mourgues)
 	- [Installation guide:](#installation-guide)
 		- [Pre-requires:](#pre-requires)
 		- [Set-up:](#set-up)
