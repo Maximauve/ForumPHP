@@ -29,4 +29,4 @@ After that, open any
 Go to `/Path/to/final-tp---/View/WebSite`
 
 Once you're here, type `php -S localhost:<any_port>`
-> Of course, don't include the `<>`, just put a port you want your server to run on. For example, you can use `8080
+> Of course, don't include the `<>`, just put a port you want your server to run on. For example, you can use `8080`
