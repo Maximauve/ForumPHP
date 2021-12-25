@@ -20,7 +20,7 @@ Tableof content:
 > If you have Xamp/Lamp you already have it.
 
 ### Set-up:
-Create a new database in `phpMyAdmin` named ==forum==, then:
+Create a new database in `phpMyAdmin` named `forum`, then:
 - Go to `Import`
     - Upload the `forum.sql`, then click on **Run**
     > `forum.sql` can be found in `/Path/to/final-tp-PHP/Model/Database`
