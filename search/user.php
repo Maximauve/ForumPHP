@@ -1,13 +1,6 @@
 <?php
-require '../checkConnection.php';
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-	$pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-	die();
-}
+require('../Packages/checkConnection.php');
+require('../Packages/database.php');
 
 $src = $_GET['src'];
 $querySearch = "SELECT * FROM user WHERE username LIKE '%" . $src . "%'";
@@ -17,20 +10,21 @@ $users = $query->fetchAll(mode:PDO::FETCH_ASSOC);
 
 ?> 
 
-<?php require("../templates/head.php"); ?>
+<?php require("../Templates/head.php"); ?>
 <body>
-<?php require('../templates/navbar.php'); 
+<?php require('../Templates/navbar.php'); 
 if (count($users) == 0) { ?>
 	<h1> Aucun résultat n'a été trouvé. </h1>
 <?php } else { ?> 
-	<h1> <?= count($users) ?> résultats </h1> 
+	<h1> <?= count($users) ?> résultats pour "<?=$src?>" </h1> 
 <?php foreach($users as $user) {?>
 	<div class="space sp-large">
-  	    <div class="post">
-            <p> Username : <?= $user["username"] ?></p>
-            Photo de profil <img src="<?= $user["profilePicture"] ?>"/>
-            <p> Admin : <?php if ($user["admin"]) { ?> Oui <?php } else { ?> Non </p> <?php } ?>
-	    </div>
+		<div class="post">
+			<a href="/user?id=<?=$user["userId"]?>"><p class="author"><img class="pp-medium" src="<?= $user['profilePicture'] ?>"><?= $user["username"] ?></p></a>
+			<?php if ($user["admin"]) { ?> 
+				<p>Administrateur</p>
+			<?php } ?>
+		</div>
 	</div>
 <?php } 
 } ?>

@@ -5,5 +5,5 @@ session_start();
 unset($_SESSION['username']);
 unset($_SESSION['connected']);
 
-header('Location: /');
+header('Location: /Connections/login.php');
 exit();

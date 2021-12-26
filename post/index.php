@@ -1,23 +1,19 @@
 <?php 
-require('../checkConnection.php');
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-	$pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-	die();
-}
+require('../Packages/checkConnection.php');
+require('../Packages/database.php');
 ?>
 <html lang="fr">
-<?php require("../templates/head.php"); ?>
+<?php require("../Templates/head.php"); ?>
 
 <body class="index-page">
 
-<?php require('../templates/navbar.php'); 
+<?php require('../Templates/navbar.php'); 
 
 
 $id = $_GET["id"];
+if ($id == null) {
+	header("Location: /");
+}
 $queryShow = "SELECT * FROM article INNER JOIN user ON user.userId = article.userId WHERE id = :id";
 $datas = [
 	'id'=>$id
@@ -38,20 +34,19 @@ $favorites = array_map(function ($favorite) {
 	return $favorite;
 }, $favorites);
 ?>
-<h1> Show </h1>
-
+<br>
 <div class="space sp-large" id="<?=$post["id"]?>">
   		<div class="post">
 		  <?php if (in_array($post["id"], $favorites)) { ?>
-			<a href="/favorite/unfavorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-2.png" alt="Heart"/></a>
+			<a href="/Favorites/unLike.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img class="heart" src="/Assets/Images/heart2.png" alt="Heart"/></a>
 		<?php } else { ?>
-			<a href="/favorite/favorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-1.png" alt="Heart"/></a>
+			<a href="/Favorites/like.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img class="heart" src="/Assets/Images/heart1.png" alt="Heart"/></a>
 		<?php } ?>
   	  <?php if ($post["picture"]) {?>
   	    <div>
   	  <?php } ?>
   	  <div>
-		<p class="author">Auteur : <?= $post["username"] ?> </p>
+		<a href="/user?id=<?=$post["userId"]?>"><p class="author"><img class="pp-small" src="<?= $post['profilePicture'] ?>"><?= $post["username"] ?> </p></a>
   	  	<p class="title"><?=$post["title"]?></p>
   	  	<p class="content"><?=$post["content"]?></p>
   	  	<p class="date">Date : <?=$post["publicationDate"]?></p>

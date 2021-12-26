@@ -23,10 +23,10 @@ Tableof content:
 Create a new database in `phpMyAdmin` named `forum`, then:
 - Go to `Import`
     - Upload the `forum.sql`, then click on **Run**
-    > `forum.sql` can be found in `/Path/to/final-tp-PHP/Model/Database`
+    > `forum.sql` can be found in `/Path/to/final-tp-PHP/Database`
 
 After that, open any 
-Go to `/Path/to/final-tp---/View/WebSite`
+Go to `/Path/to/final-tp-PHP/`
 
 Once you're here, type `php -S localhost:<any_port>`
 > Of course, don't include the `<>`, just put a port you want your server to run on. For example, you can use `8080`

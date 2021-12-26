@@ -1,13 +1,6 @@
 <?php
-require './checkConnection.php';
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-    $pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-    die();
-}
+require('../Packages/checkConnection.php');
+require('../Packages/database.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$queryDelete = "DELETE FROM user WHERE userId = :id";
@@ -16,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ];
     $query = $pdo->prepare($queryDelete);
     $query->execute($datas);
-	header('Location: /admin/admin_user.php');
+	header('Location: /Admin/user.php');
 } else {
 	header('Location: /');
 }

@@ -1,13 +1,6 @@
 <?php 
-require './../checkConnection.php';
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-	$pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-	die();
-}
+require('../Packages/checkConnection.php');
+require('../Packages/database.php');
 
 
 if ($_GET["articleId"]) {
@@ -20,7 +13,7 @@ if ($_GET["articleId"]) {
     $query = $pdo->prepare($queryUser);
     $query->execute($datas);
     $user = $query->fetch(mode:PDO::FETCH_ASSOC);
-    $queryInsert = "DELETE FROM favorite WHERE userId = :userId AND articleId = :articleId";
+    $queryInsert = "INSERT INTO favorite (userId, articleId) VALUES (:userId, :articleId)";
     $datas = [
         'userId'=>$user["userId"],
         'articleId'=>$id

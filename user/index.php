@@ -1,28 +1,15 @@
 <?php 
-session_start();
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-	$pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-	die();
-}
+require('../Packages/checkConnection.php');
+require('../Packages/database.php');
 
 ?>
-
 <html lang="fr">
-<head>
-	<link rel="stylesheet" type="text/css" href="./assets/style/style.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Forum</title>
-</head>
+<?php require("../Templates/head.php"); ?>
 
 <body>
 
-<?php require('../templates/navbar.php');
+
+<?php require('../Templates/navbar.php');
 
 $userId = $_GET['id'];
 $queryUser = "SELECT * FROM user WHERE userId = :id";
@@ -54,29 +41,37 @@ $favorites = array_map(function ($favorite) {
 }, $favorites);
 ?>
 
-<h2> RECUPERATION DES INFORMATIONS </h2>
-<p> Username : <?= $user['username'] ?> </p>
-<p> Photo de profil : <img src="<?=$user["profilePicture"]?>"/> </p>
-<p> isAdmin : <?php if ($user['admin']) echo "Yes"; else echo "No" ?> </p>
+<h1> PROFIL DE <?= $user['username'] ?> </h1>
+<div class="profile-infos">
+	<img class="profile-picture" src="<?=$user["profilePicture"]?>"/>
+	<?php if ($user['admin']) {?>
+		<p> Administrateur </p>
+	<?php } ?>
+</div>
 
-<h2> RECUPERATIONS DES POSTS </h2>
+<h1> PUBLICATIONS </h1>
 
 <?php foreach($resPosts as $post) {?>
 	<div class="space sp-large" id="<?=$post["id"]?>">
   		<div class="post">
 		  <?php if (in_array($post["id"], $favorites)) { ?>
-			<a href="./favorite/unfavorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-2.png" alt="Heart"/></a>
+			<a href="./Favorites/unLike.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img class="heart" src="/Assets/Images/heart2.png" alt="Heart"/></a>
 		<?php } else { ?>
-			<a href="./favorite/favorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-1.png" alt="Heart"/></a>
+			<a href="./Favorites/like.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img class="heart" src="/Assets/Images/heart1.png" alt="Heart"/></a>
 		<?php } ?>
 			<?php if ($post["picture"]) {?>
 				<div>
 			<?php } ?>
+			<a href="./Post?id=<?=$post["id"]?>">
 			<div>
-				<p class="post-title"><?=$post["title"]?></p>
-				<p class="post-content"><?=$post["content"]?></p>
-				<p class="post-date"><?=$post["publicationDate"]?></p>
+				<p class="title"><?=$post["title"]?></p>
+				<p class="content"><?=$post["content"]?></p>
+				<p class="date"><?=$post["publicationDate"]?></p>
+				<?php if ($post["modified"]) { ?>
+					<p> (modifié) </p>
+				<?php } ?>
 			</div>
+			</a>
 			<?php if ($post["picture"]) {?>
 				</div>
 					<img class="post-img" src="<?=$post["picture"]?>">

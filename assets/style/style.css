@@ -14,6 +14,15 @@ body {
   background-image: "./assets/images/hero-glow.svg";
 }
 
+input[type="text"] {
+  color: #627597;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+input:focus {
+  outline: none;
+}
+
 h1 {
   font-family: "VT323", monospace;
   text-align: center;
@@ -48,6 +57,15 @@ a {
 
 button {
   cursor: pointer;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  margin-top: 30px;
+  color: #0c162d;
+  font-weight: bold;
+  font-size: 18px;
+  display: inline;
+  background-color: #627597;
+  border: 3px solid #627597;
+  border-radius: 10px;
 }
 
 /**  ========== SPACE ==========  **/
@@ -103,12 +121,23 @@ button {
   font-weight: 600;
   font-family: Consolas, Monaco, "Courier New", monospace;
 }
+.author {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
 
 .space .post .date {
   color: #627597;
   text-align: right;
   font-weight: 600;
   font-family: Consolas, Monaco, "Courier New", monospace;
+}
+
+.post-img {
+  display: grid;
+  place-items: center;
+  max-width: 900px;
 }
 
 /** All spaces **/
@@ -259,41 +288,28 @@ nav li a:hover {
   color: #57f287;
 }
 
-/** ========== POSTS ========== 
-
-.posts {
-  display: inline-block;
-  justify-content: space-between;
-}
-.post-card {
-  display: inline-flex;
-  position: relative;
-  align-items: flex-start;
-  height: fit-content;
-  max-height: 20vw;
-  width: 40vw;
-  border: 1px solid black;
-  border-radius: 15px;
-}
-.post-title {
-  text-align: center;
-  font-weight: bold;
-  color: black;
-}
-.post-content {
-  margin-left: 1vw;
-  display: block;
-  color: black;
-}
-.post-date {
-  font-size: smaller;
-}
-.post-img {
-  width: 40%;
+.heart {
+  height: 25px;
+  width: 25px;
 }
 
-.Test {
-  text-align: center;
-  cursor: default;
+.profile-picture {
+  height: 300px;
 }
-**/
+
+.pp-small {
+  object-fit: cover;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+.pp-medium {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+.profile-infos {
+  display: grid;
+  place-items: center;
+}

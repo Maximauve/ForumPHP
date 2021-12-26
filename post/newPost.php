@@ -1,20 +1,12 @@
 <?php 
-require('../checkConnection.php');
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-	$pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-	die();
-}
-
+require('../Packages/checkConnection.php');
+require('../Packages/database.php');
 ?>
 
 <html lang="fr">
 <head><title>Nouveau post - Yforum</title></head>
 
-<?php require("../templates/head.php"); ?>
+<?php require("../Templates/head.php"); ?>
 
 <?php
 // SELECT * FROM `article` ORDER BY id DESC LIMIT 1
@@ -88,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body class="newpost-page">
 
-<?php require('../templates/navbar.php'); ?>
+<?php require('../Templates/navbar.php'); ?>
 <h1>Yforum : Nouveau post</h1>
 <div class="space sp-small">
 	<div class="text">
 		<p>De quoi voulez-vous parler ?</p>
 	</div>
-	<form action="./new_post.php" method="post" enctype="multipart/form-data">
+	<form action="/Post/newPost.php" method="post" enctype="multipart/form-data">
 		<div class="label">
     	<label for="title">
         Titre :<br />

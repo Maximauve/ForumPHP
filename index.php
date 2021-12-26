@@ -1,22 +1,15 @@
 <?php 
-require './checkConnection.php';
-$dsn="mysql:host=localhost:3306;dbname=forum";
-$username='root';
-$password='';
-try {
-	$pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $exception) {
-	die();
-}
+require('./Packages/checkConnection.php');
+require('./Packages/database.php');
 
 ?>
 <html lang="fr">
-<?php require("./templates/head.php"); ?>
+<?php require("./Templates/head.php"); ?>
 
 <body class="index-page">
 
 
-<?php require('./templates/navbar.php'); ?>
+<?php require('./Templates/navbar.php'); ?>
 <h1>Yforum</h1>
 
 <?php
@@ -39,43 +32,43 @@ $favorites = array_map(function ($favorite) {
 }, $favorites);
 
 foreach($articles as $post) {?>
-	<!-- <a href="./post?id=<?=$post["id"]?>"> -->
-		<div class="space sp-large" id="<?=$post["id"]?>">
-  		<div class="post">
-		  <?php if (in_array($post["id"], $favorites)) { ?>
-			<a href="/favorite/unfavorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-2.png" alt="Heart"/></a>
-		<?php } else { ?>
-			<a href="/favorite/favorite.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img src="/assets/images/heart-1.png" alt="Heart"/></a>
-		<?php } ?>
-  		  <?php if ($post["picture"]) {?>
-  		    <div>
-  		  <?php } ?>
-  		  <div>
-					<p class="author">Auteur : <a href="/user?id=<?=$post["userId"]?>"><?= $post["username"] ?></a></p>
-  		  	<p class="title"><?=$post["title"]?></p>
-  		  	<p class="content"><?=$post["content"]?></p>
-  		  	<p class="date">Date : <?=$post["publicationDate"]?></p>
-					<?php if ($post["modified"]) { ?>
-						<p> (modifié) </p>
+	<div class="space sp-large" id="<?=$post["id"]?>">
+		<div class="post">
+			<?php if (in_array($post["id"], $favorites)) { ?>
+			<a href="/Favorites/unLike.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img class="heart" src="/Assets/Images/heart2.png" alt="Heart"/></a>
+			<?php } else { ?>
+			<a href="/Favorites/like.php?articleId=<?=$post["id"]?>&url=<?=$_SERVER["REQUEST_URI"]?>"><img class="heart" src="/Assets/Images/heart1.png" alt="Heart"/></a>
+			<?php } ?>
+			<?php if ($post["picture"]) {?>
+			<div>
+			<?php } ?>
+			<div>
+				<a href="/user?id=<?=$post["userId"]?>"><p class="author"><img class="pp-small" src="<?= $post['profilePicture'] ?>"><?= $post["username"] ?></p></a>
+				<a href="./Post?id=<?=$post["id"]?>">
+				<p class="title"><?=$post["title"]?></p>
+				<p class="content"><?=$post["content"]?></p>
+				<p class="date">Date : <?=$post["publicationDate"]?></p>
+				<?php if ($post["modified"]) { ?>
+					<p> (modifié) </p>
 					<?php } ?>
-  		  </div>
-  		  <?php if ($post["picture"]) {?>
-  		  	</div>
-  		  		<img class="img" src="<?=$post["picture"]?>">
-  			<?php } ?>
-			  <?php if ($post["username"] === $_SESSION["username"]) { ?>
-			  <form method="POST" action="/post/delete.php">
-				  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
-				  <button type="submit">Delete</button>
-			  </form>
-			  <form method="POST" action="/post/edit.php">
-				  <input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
-				  <button type="submit">Edit</button>
-			  </form>
-			  <?php } ?>
+				</a>
 			</div>
+			<?php if ($post["picture"]) {?>
+				</div>
+					<img class="post-img" src="<?=$post["picture"]?>">
+			<?php } ?>
+			<?php if ($post["username"] === $_SESSION["username"]) { ?>
+			<form method="POST" action="/post/delete.php">
+				<input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
+				<button type="submit">Delete</button>
+			</form>
+			<form method="POST" action="/post/edit.php">
+				<input type="text" name="id" value="<?=$post["id"]?>" style="display: none;"/>
+				<button type="submit">Edit</button>
+			</form>
+			<?php } ?>
 		</div>
-	<!-- </a> -->
+	</div>
 <?php } ?>
 
 </body>
