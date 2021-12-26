@@ -1,7 +1,7 @@
 
 <?php 
 session_start();
-require('../Templates/database.php');
+require('../Packages/database.php');
 
 ?>
 
