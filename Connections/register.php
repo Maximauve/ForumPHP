@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$errorMessage = "Votre photo n'est pas conforme !";
 				die();
 			}
-			$upload = move_uploaded_file($file_tmp,"/Assets/ProfilePictures/".$username . "." . $file_ext);
+			$upload = move_uploaded_file($file_tmp,"../Assets/ProfilePictures/".$username . "." . $file_ext);
 			if (!$upload) {
 				$errorMessage = "Erreur dans le téléchargement de votre photo";
 				die();

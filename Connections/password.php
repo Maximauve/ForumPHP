@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require('../Templates/database.php');
+require('../Packages/database.php');
 require('../PHPMailer-master/src/Exception.php');
 require('../PHPMailer-master/src/PHPMailer.php');
 require('../PHPMailer-master/src/SMTP.php');
@@ -21,7 +21,7 @@ function randomPassword() {
 <head><title>Mot de passe oublié - Yforum</title></head>
 
 <?php 
-require("/Templates/head.php");
+require("../Templates/head.php");
 
 
 $errorMessage = "";
